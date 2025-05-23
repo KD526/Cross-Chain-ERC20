@@ -55,6 +55,20 @@ contract ChainZNative is
         address newImplementation
     ) internal virtual override onlyOwner {}
 
+      function isBlackListed(address maker) public view returns (bool) {
+        return blackList[maker];
+    }
+    
+    function addBlackList (address evilUser) public onlyAdmin {
+        blackList[evilUser] = true;
+        emit AddedBlackList(evilUser);
+    }
+
+    function removeBlackList (address clearedUser) public onlyAdmin {
+        blackList[clearedUser] = false;
+        emit RemovedBlackList(clearedUser);
+    }
+
     function pause() public onlyOwner {
         _pause();
     }
