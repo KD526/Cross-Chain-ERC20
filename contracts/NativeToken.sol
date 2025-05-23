@@ -22,6 +22,12 @@ contract ChainZNative is
     address private mtzAdmin;
     address public dao;
 
+    mapping (address => bool) internal blackList;
+
+    event AddedBlackList(address user);
+
+    event RemovedBlackList(address user);
+
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
